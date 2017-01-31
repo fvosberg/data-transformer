@@ -1,4 +1,4 @@
 package de.frederikvosberg.datatransformer;
 
-class CSVFileReader {
+public class Transformer {
 }

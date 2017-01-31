@@ -6,7 +6,7 @@ import java.io.StringWriter;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public class SQLInsertsWriterTest {
+public class SQLOutputTest {
     @Test
     public void canWriteDataAsSQL() {
         SortedMap<String, String> data = new TreeMap<>();
@@ -15,10 +15,10 @@ public class SQLInsertsWriterTest {
         data.put("col_3", "val_3");
 
         StringWriter writerMock = new StringWriter();
-        SQLInsertsWriter sqlInsertsWriter = new SQLInsertsWriter("my_data", writerMock);
+        SQLOutput sqlOutput = new SQLOutput("my_data", writerMock);
 
         try {
-            sqlInsertsWriter.WriteToFile(data);
+            sqlOutput.write(data);
         } catch (Exception e) {
             org.junit.Assert.assertNull(e);
         }

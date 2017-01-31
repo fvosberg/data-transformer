@@ -7,7 +7,7 @@ import java.util.Map;
  * Be patient, the dictionary isn't ordered, so transitive sets can end up in non deterministic results
  */
 public class DictionaryTransformation {
-    private Map<String, String> _dictionary;
+    private final Map<String, String> _dictionary;
 
     public DictionaryTransformation(Map<String, String> dictionary) {
         _dictionary = dictionary;

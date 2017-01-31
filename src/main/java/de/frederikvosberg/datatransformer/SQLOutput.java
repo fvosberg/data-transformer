@@ -5,31 +5,31 @@ import java.io.Writer;
 import java.util.Map;
 import java.util.SortedMap;
 
-class SQLInsertsWriter {
-    private String _tableName;
-    private Writer _writer;
+class SQLOutput {
+    private final String _tableName;
+    private final Writer _writer;
 
     /**
      * @param tableName the name of the SQL table in which the SQL statements should insert into
      * @param writer    the writer for the statements - e.g. a FileWriter
      */
-    public SQLInsertsWriter(String tableName, Writer writer) {
+    public SQLOutput(String tableName, Writer writer) {
         _writer = writer;
         _tableName = tableName;
     }
 
-    public void WriteToFile(SortedMap<String, String> data) throws IOException {
+    public void write(SortedMap<String, String> data) throws IOException {
         StringBuilder statement = new StringBuilder();
         statement.append("INSERT INTO `` ");
         statement.insert(13, _tableName);
-        statement.append(this.ColumnsDefinition(data));
+        statement.append(this.columnsDefinition(data));
         statement.append(" VALUES ");
-        statement.append(this.ValuesDefinition(data));
+        statement.append(this.valuesDefinition(data));
         statement.append(";");
         _writer.write(statement.toString());
     }
 
-    private String ColumnsDefinition(SortedMap<String, String> data) {
+    private String columnsDefinition(SortedMap<String, String> data) {
         StringBuilder cols = new StringBuilder("(");
         boolean isFirst = true;
         for (Map.Entry<String, String> entry : data.entrySet()) {
@@ -46,7 +46,7 @@ class SQLInsertsWriter {
         return cols.toString();
     }
 
-    private String ValuesDefinition(SortedMap<String, String> data) {
+    private String valuesDefinition(SortedMap<String, String> data) {
         StringBuilder cols = new StringBuilder("(");
         boolean isFirst = true;
         for (Map.Entry<String, String> entry : data.entrySet()) {
